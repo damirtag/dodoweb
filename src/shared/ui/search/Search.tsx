@@ -31,12 +31,12 @@ export function Searchbar({ items, onSelect }: SearchbarProps) {
     };
 
     const handleNavigate = (item: Pizzeria) => {
-        navigate(`/pizzeria/${item.countryId}/${item.id}`);
+        navigate(`/pizzeria/${item.countryCode}/${item.countryId}/${item.id}`);
     };
 
     return (
         <div className="relative w-full">
-            <Command className="rounded-lg border border-neutral-800 bg-[#111] text-white shadow-none">
+            <Command className="rounded-lg">
                 <CommandInput
                     placeholder="Искать пиццерию..."
                     value={query}
@@ -65,7 +65,7 @@ export function Searchbar({ items, onSelect }: SearchbarProps) {
                                             onClick={() => handleSelect(item)}
                                         >
                                             <div className="flex-1 min-w-0">
-                                                <div className="text-white text-sm font-medium truncate">
+                                                <div className="text-orange-500 text-sm font-bold truncate">
                                                     {item.name}
                                                     {item.alias && <span className="text-neutral-400 ml-1.5">({item.alias})</span>}
                                                 </div>
@@ -76,7 +76,7 @@ export function Searchbar({ items, onSelect }: SearchbarProps) {
                                                     e.stopPropagation();
                                                     handleNavigate(item);
                                                 }}
-                                                className="ml-3 flex items-center gap-1.5 px-3 py-1.5 bg-neutral-700 hover:bg-neutral-600 rounded-md text-xs font-medium text-white transition-colors whitespace-nowrap"
+                                                className="ml-3 flex items-center gap-1.5 px-3 py-1.5 bg-neutral-700 hover:bg-neutral-600 rounded-md text-xs font-bold text-orange-500 transition-colors whitespace-nowrap"
                                             >
                                                 Перейти
                                                 <FaArrowRightLong className="w-3.5 h-3.5" />

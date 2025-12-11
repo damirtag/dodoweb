@@ -22,6 +22,7 @@ export interface Pizzeria {
     stationary: WorkTime | null;
     delivery: WorkTime | null;
     countryId?: number;
+    countryCode?: string;
 }
 
 export interface Coords {

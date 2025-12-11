@@ -181,7 +181,7 @@ export const PizzeriaMapWidget: React.FC<PizzeriaMapWidgetProps> = ({ pizzerias,
                             <div class="text-gray-400 text-xs mb-2">${humanAddress}</div>
 
                             <a 
-                                href="/pizzeria/${props.country_id}/${props.id}"
+                                href="/pizzeria/${props.country_code}/${props.country_id}/${props.id}"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="${buttonClass} block text-center"

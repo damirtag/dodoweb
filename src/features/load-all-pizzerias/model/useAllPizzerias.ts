@@ -21,6 +21,7 @@ export function useAllPizzerias() {
                         return pizzerias.map((p) => ({
                             ...p,
                             countryId: country.id,
+                            countryCode: country.code,
                         }));
                     })
                 );

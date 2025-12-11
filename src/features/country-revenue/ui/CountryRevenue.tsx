@@ -19,7 +19,7 @@ export function CountryRevenueWidget() {
     }
 
     return (
-        <div className="w-full max-w-6xl px-4">
+        <div className="w-full max-w-6xl px-4 mt-8">
             <h1 className="text-white text-xl font-bold mb-6">Распределение доходов по странам</h1>
 
             <div className="space-y-4">
@@ -29,13 +29,14 @@ export function CountryRevenueWidget() {
                     return (
                         <div key={country.countryId} className="bg-zinc-900 rounded-xl shadow-md overflow-hidden transition-all">
                             <button
-                                className="w-full flex items-center justify-between gap-4 p-4 hover:bg-gray-800 transition-colors"
+                                className="w-full flex items-center justify-between p-4 hover:bg-gray-800 transition-colors"
                                 onClick={() => setOpenCountryCode(isOpen ? null : country.countryCode)}
                             >
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl text-orange-500 font-bold font-mono">
+                                <div className="flex items-center gap-4 min-w-0">
+                                    <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl text-orange-500 font-bold font-mono shrink-0">
                                         {country.countryCode.toUpperCase()}
                                     </div>
+
                                     <div className="flex-1 min-w-0 text-left">
                                         <div className="text-white font-semibold text-lg truncate">
                                             {getCountryName(country.countryCode)}
@@ -47,14 +48,14 @@ export function CountryRevenueWidget() {
                                 </div>
 
                                 <FaChevronDown
-                                    className={`w-5 h-5 text-gray-400 transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+                                    className={`w-5 h-5 text-gray-400 transition-transform shrink-0 ${isOpen ? "rotate-180" : ""}`}
                                 />
                             </button>
 
-                            {/* Раскрытая информация */}
-                            <div className={`transition-max-height duration-300 overflow-hidden ${isOpen ? "max-h-[500px]" : "max-h-0"}`}>
+                            {/* Drop-down details */}
+                            <div className={`transition-all duration-300 overflow-hidden ${isOpen ? "max-h-screen" : "max-h-0"}`}>
                                 {isOpen && (
-                                    <div className="p-4 border-t border-gray-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    <div className="p-4 border-t border-gray-700 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {isCountryLoading || !countryDetails ? (
                                             <div className="text-gray-400 text-center py-4 col-span-full">Загрузка деталей страны...</div>
                                         ) : (
@@ -114,11 +115,11 @@ export function CountryRevenueWidget() {
 
 function MetricCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
     return (
-        <div className="flex items-center gap-3 p-4  rounded-lg">
+        <div className="flex items-center gap-3 p-4 bg-zinc-800/40 rounded-lg">
             {icon}
             <div>
                 <div className="text-gray-400 text-sm">{label}</div>
-                <div className="text-white font-semibold">{value}</div>
+                <div className="text-white font-semibold wrap-break-word">{value}</div>
             </div>
         </div>
     );
