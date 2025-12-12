@@ -79,6 +79,7 @@ export const PizzeriaMapWidget: React.FC<PizzeriaMapWidgetProps> = ({ pizzerias,
                     name: p.name,
                     address: p.address,
                     country_id: p.countryId,
+                    country_code: p.countryCode,
                 },
             })),
         };
