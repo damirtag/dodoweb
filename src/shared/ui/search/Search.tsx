@@ -46,7 +46,7 @@ export function Searchbar({ items, onSelect }: SearchbarProps) {
                     }}
                     onFocus={() => query.length > 0 && setOpen(true)}
                     onBlur={() => setTimeout(() => setOpen(false), 200)}
-                    className="h-9 placeholder:text-neutral-500"
+                    className="h-9 placeholder:text-neutral-500 text-white"
                 />
             </Command>
 

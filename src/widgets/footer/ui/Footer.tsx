@@ -3,7 +3,7 @@ import { FaTelegram } from "react-icons/fa6";
 
 export function Footer() {
     return (
-        <footer className="w-full max-w-6xl px-4 py-4 text-gray-400 text-sm border-t border-gray-800 mt-6 flex flex-col sm:flex-row justify-between items-center">
+        <footer className="w-full max-w-6xl mx-auto px-4 py-4 text-gray-400 text-sm border-t border-gray-800 mt-6 flex flex-col sm:flex-row justify-between items-center">
             <span className="text-center sm:text-left">
                 Проект создан исключительно в ознакомительных целях и не связан с брендом Dodo Pizza.
             </span>

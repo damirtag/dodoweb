@@ -176,20 +176,23 @@ export const PizzeriaMapWidget: React.FC<PizzeriaMapWidgetProps> = ({ pizzerias,
                 .setLngLat(coords)
                 .setHTML(
                     `
-                        <div class="space-y-2">
-                            <div class="font-semibold text-white text-sm mb-1">${props.name}</div>
-                            <div class="text-gray-400 text-xs mb-2">${humanAddress}</div>
-
-                            <a 
-                                href="/pizzeria/${props.country_code}/${props.country_id}/${props.id}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="${buttonClass} block text-center"
-                            >
-                                Перейти
-                            </a>
-                        </div>
-                    `
+        <div class="space-y-2">
+            <div class="font-semibold text-white text-sm mb-1">${props.name}</div>
+            <div class="text-gray-400 text-xs mb-2">${humanAddress}</div>
+            ${
+                validPizzerias.length !== 1
+                    ? `<a 
+                        href="/pizzeria/${props.country_code}/${props.country_id}/${props.id}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="${buttonClass} block text-center"
+                    >
+                        Перейти
+                    </a>`
+                    : ""
+            }
+        </div>
+        `
                 )
                 .addTo(currentMap);
         };
@@ -199,10 +202,16 @@ export const PizzeriaMapWidget: React.FC<PizzeriaMapWidgetProps> = ({ pizzerias,
         // Fit bounds safely
         if (validPizzerias.length) {
             const bounds = new maplibregl.LngLatBounds();
+
             validPizzerias.forEach((p) => {
                 bounds.extend([p.coords!.long, p.coords!.lat] as [number, number]);
             });
-            currentMap.fitBounds(bounds, { padding: 50, maxZoom: 15 });
+
+            if (validPizzerias.length === 1) {
+                currentMap.fitBounds(bounds, { padding: 100, maxZoom: 18 });
+            } else {
+                currentMap.fitBounds(bounds, { padding: 50, maxZoom: 15 });
+            }
         }
 
         return () => {
